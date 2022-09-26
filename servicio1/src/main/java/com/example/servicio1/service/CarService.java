@@ -29,4 +29,10 @@ public class CarService {
     public List<Car> getByUserId(int userId){
         return carRepository.findByUserId(userId);
     }
+
+    public Car deleteCar(int id){
+        Car car = carRepository.findById(id).orElse(null);
+        carRepository.deleteById(id);
+        return car;
+    }
 }
