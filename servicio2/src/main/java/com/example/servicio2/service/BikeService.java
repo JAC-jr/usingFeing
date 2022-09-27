@@ -13,20 +13,26 @@ public class BikeService {
     @Autowired
     BikeRepository bikeRepository;
 
-    public List<Bike> getAll(){
+    public List<Bike> getAll() {
         return bikeRepository.findAll();
     }
 
-    public Bike getBikeById(int id){
+    public Bike getBikeById(int id) {
         return bikeRepository.findById(id).orElse(null);
     }
 
-    public Bike saveBike(Bike bike){
+    public Bike saveBike(Bike bike) {
         Bike bikeNew = bikeRepository.save(bike);
         return bikeNew;
     }
 
-    public List<Bike> getByUserId(int userId){
+    public List<Bike> getByUserId(int userId) {
         return bikeRepository.findByUserId(userId);
+    }
+
+    public Bike deleteBike(int id) {
+        Bike bike = bikeRepository.findById(id).orElse(null);
+        bikeRepository.deleteById(id);
+        return bike;
     }
 }
